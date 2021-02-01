@@ -8,7 +8,7 @@ public double montant;
 
 public double total ;
 
-Date now = new Date();
+public String now = new Date().toString();;
 
 
 
