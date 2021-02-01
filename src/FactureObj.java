@@ -4,6 +4,8 @@ public class FactureObj {
 public int id_number ;
 public String name;
 public String lastName;
+public double montant;
+
 public double total ;
 
 Date now = new Date();
