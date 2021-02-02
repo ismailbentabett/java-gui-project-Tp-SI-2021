@@ -1,0 +1,22 @@
+id,client name,product 1,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,total
+id,client name,product 1,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,total
+id,client name,product 1,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,total
+dsfsdf sdfsdf,delaa3,106,0,delaa3,106,0,delaa3,106,0,0.0
+dsfsdf sdfsdf,ismail bentabet,delaa3,106,2,ma3adnouus,106,2,9onbolat cheb bello,106,2,848.0
+dsfsdf sdfsdf, ,null,0,0,null,0,0,null,0,0,0.0
+dsfsdf sdfsdf, ,null,0,0,null,0,0,null,0,0,0.0
+7,dfsfsd sdfsdf,delaa3,106,0,delaa3,106,0,delaa3,106,0,0.0
+8,ismail bentabet,delaa3,106,0,delaa3,106,0,delaa3,106,0,0.0
+9,ismail bentabet,delaa3,106,3,delaa3,106,6,delaa3,106,6,1908.0
+10,pokopjij kojko,delaa3,106,6,delaa3,106,8,delaa3,106,8,2332.0
+11,fdfsf sdfsdf,null,0,0,null,0,0,null,0,0,0.0
+12,dfssdf sdfsdf,null,0,0,null,0,0,null,0,0,0.0
+13,ismail bentabet,null,0,0,null,0,0,null,0,0,0.0
+14, ,null,0,0,null,0,0,null,0,0,0.0
+15, ,null,0,0,null,0,0,null,0,0,0.0
+16, ,delaa3,106,0,delaa3,106,0,delaa3,106,0,0.0
+17, ,delaa3,106,0,delaa3,106,0,delaa3,106,0,0.0
+18, ,null,0,0,null,0,0,null,0,0,0.0
+19, ,null,0,0,null,0,0,null,0,0,0.0
+20, ,null,0,0,null,0,0,null,0,0,0.0
+21, ,null,0,0,null,0,0,null,0,0,0.0
