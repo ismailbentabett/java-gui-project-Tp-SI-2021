@@ -1,26 +1,33 @@
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.awt.print.PrinterException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -28,9 +35,9 @@ public class GUI {
 
 	public GUI() {
 
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) screenSize.getHeight();
-
 		int width = (int) screenSize.getWidth();
 		JFrame frame;
 
@@ -40,7 +47,7 @@ public class GUI {
 
 		JLabel fullNamelabel = null;
 
-		JPanel SOUTH_PANEL = new JPanel();
+		JPanel SOUTH_PANEL = new JPanel(new FlowLayout(FlowLayout.CENTER));  
 
 		JPanel EAST_PANEL = new JPanel();
 
@@ -49,13 +56,18 @@ public class GUI {
 		JPanel CENTER_PANEL = new JPanel();
 		JPanel top = new JPanel();
 		JPanel bottom = new JPanel();
-
+		top.setBackground(Color.red);
+		top.setSize(200, 200);
+		bottom.setSize(200, 200);
 		JSplitPane vertical = new JSplitPane(JSplitPane.VERTICAL_SPLIT, top, bottom);
+		
+		vertical.setDividerSize(10);
+		vertical.setResizeWeight(0.5);
 		// Dimension CENTER_PANELsize = CENTER_PANEL.getSize();
 		// vertical.setDividerLocation(0.5);
 
-		// vertical.setSize(CENTER_PANELsize.height, CENTER_PANELsize.width);
-		vertical.setBackground(Color.black);
+		top.setBackground(Color.decode("#222831"));
+		bottom.setBackground(Color.decode("#222831"));
 		CENTER_PANEL.add(vertical, BorderLayout.CENTER);
 		FactureObj newfacture = new FactureObj();
 
@@ -71,36 +83,42 @@ public class GUI {
 		if (option == JOptionPane.OK_OPTION) {
 			String firstNameValue = firstName.getText();
 			String lastNameValue = lastName.getText();
-			fullNamelabel = new JLabel(firstNameValue + " " + lastNameValue);
+			fullNamelabel = new JLabel("FullName : " + firstNameValue + " " + lastNameValue);
 			newfacture.name = firstNameValue + " " + lastNameValue;
 			;
 
 		}
 
+		fullNamelabel.setForeground(Color.WHITE);
 		ProductsObj newproducts1 = new ProductsObj();
 		ProductsObj newproducts2 = new ProductsObj();
 		ProductsObj newproducts3 = new ProductsObj();
 		JLabel enterprize = new JLabel("Entreprise National Des Pièces");
 		JLabel zonename = new JLabel("15 Zone industrielle Rouiba\r\n" + "Algerie");
-		JLabel datenow = new JLabel(newfacture.now);
-
-		NORTH_PANEL.add(enterprize);
-		NORTH_PANEL.add(zonename);
-		NORTH_PANEL.add(datenow);
+		JLabel datenow = new JLabel("Date: "+newfacture.now);
+		zonename.setForeground(Color.WHITE);
+		enterprize.setForeground(Color.WHITE);
+		datenow.setForeground(Color.WHITE);
+		zonename.setHorizontalAlignment(JLabel.CENTER);
+		enterprize.setHorizontalAlignment(JLabel.CENTER);
+		datenow.setHorizontalAlignment(JLabel.CENTER);
+		NORTH_PANEL.add(enterprize, BorderLayout.CENTER);
+		NORTH_PANEL.add(zonename, BorderLayout.CENTER);
+		NORTH_PANEL.add(datenow, BorderLayout.CENTER);
 
 		frame.add(NORTH_PANEL, BorderLayout.NORTH);
 		frame.add(SOUTH_PANEL, BorderLayout.SOUTH);
 		frame.add(EAST_PANEL, BorderLayout.EAST);
 		frame.add(WEST_PANEL, BorderLayout.WEST);
 		frame.add(CENTER_PANEL, BorderLayout.CENTER);
-		NORTH_PANEL.setBackground(Color.decode("#ff9292"));
-		SOUTH_PANEL.setBackground(Color.decode("#ff9292"));
+		NORTH_PANEL.setBackground(Color.decode("#222831"));
+		SOUTH_PANEL.setBackground(Color.decode("#222831"));
 		;
-		EAST_PANEL.setBackground(Color.decode("#ffb4b4"));
+		EAST_PANEL.setBackground(Color.decode("#393e46"));
 		;
-		WEST_PANEL.setBackground(Color.decode("#ffb4b4"));
+		WEST_PANEL.setBackground(Color.decode("#393e46"));
 		;
-		CENTER_PANEL.setBackground(Color.decode("#ffdcdc"));
+		CENTER_PANEL.setBackground(Color.decode("#393e46"));
 		;
 		NORTH_PANEL.setPreferredSize(new Dimension(width, 100));
 		SOUTH_PANEL.setPreferredSize(new Dimension(width, 100));
@@ -109,16 +127,22 @@ public class GUI {
 		frame.setSize(width, height);
 
 		String products[] = { "delaa3", "ma3adnouus", "9onbolat cheb bello" };
-
+		  SpinnerModel newSpinnerModel =  
+		             new SpinnerNumberModel(1, //initial value  
+		                1, //minimum value  
+		                10000000, //maximum value  
+		                1); 
 		JComboBox Products = new JComboBox(products);
-		JSpinner Quantity = new JSpinner();
+		JSpinner Quantity = new JSpinner(newSpinnerModel);
 
 		JButton addProduct = new JButton("Add Product");
-		SOUTH_PANEL.add(Products);
-		SOUTH_PANEL.add(Quantity);
-		SOUTH_PANEL.add(addProduct);
+		SOUTH_PANEL.add(Products,FlowLayout.LEFT);
+		SOUTH_PANEL.add(Quantity,FlowLayout.CENTER);
+		SOUTH_PANEL.add(addProduct,FlowLayout.RIGHT);
 		ArrayList<ProductsObj> data = new ArrayList<ProductsObj>();
+		JButton printbtn = new JButton();
 
+		
 		// table
 		String col[] = { "Ref", "Product", "Unit Price", "Quantity", "Product Total Price" };
 
@@ -131,7 +155,10 @@ public class GUI {
 		DefaultTableModel tableModelfac = new DefaultTableModel(colfac, 0);
 
 		JTable tablefac = new JTable(tableModelfac);
-
+		table.getTableHeader().setBackground(Color.decode("#393e46"));
+		tablefac.getTableHeader().setBackground(Color.decode("#393e46"));
+		table.setBackground(Color.decode("#393e46"));
+		tablefac.setBackground(Color.decode("#393e46"));
 		addProduct.addActionListener(new ActionListener() {
 			int productChecker = 0;
 
@@ -208,23 +235,22 @@ public class GUI {
 		});
 		TableColumnModel columnModel = table.getColumnModel();
 		TableColumnModel columnModelfac = tablefac.getColumnModel();
-		
-		  columnModel.getColumn(0).setPreferredWidth(500);
-		  columnModel.getColumn(1).setPreferredWidth(500);
-		  columnModel.getColumn(2).setPreferredWidth(500);
-		  columnModel.getColumn(3).setPreferredWidth(500);
-		  columnModelfac.getColumn(0).setPreferredWidth(500);
-		  columnModelfac.getColumn(1).setPreferredWidth(500);
-		 
 
+		table.setForeground(Color.WHITE);
+		tablefac.setForeground(Color.WHITE);
+		table.getTableHeader().setForeground(Color.WHITE);
+		tablefac.getTableHeader().setForeground(Color.WHITE);
 		table.setRowHeight(250);
 		tablefac.setRowHeight(250);
+
 		top.add(new JScrollPane(table), BorderLayout.NORTH);
 		bottom.add(new JScrollPane(tablefac), BorderLayout.SOUTH);
-		NORTH_PANEL.add(fullNamelabel);
-		JLabel facid = new JLabel(String.valueOf(count("output.txt")));
-
-		NORTH_PANEL.add(facid);
+		NORTH_PANEL.add(fullNamelabel, BorderLayout.CENTER);
+		fullNamelabel.setHorizontalAlignment(JLabel.CENTER);
+		JLabel facid = new JLabel("Id :" + String.valueOf(count("output.txt")));
+		facid.setForeground(Color.WHITE);
+		NORTH_PANEL.add(facid, BorderLayout.CENTER);
+		facid.setHorizontalAlignment(JLabel.CENTER);
 		frame.setVisible(true);
 
 		frame.addWindowListener(new WindowAdapter() {
@@ -253,7 +279,12 @@ public class GUI {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-
+				try {
+					print(table);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -278,5 +309,15 @@ public class GUI {
 		return (int) lines;
 
 	}
+	
+
+
+		  public void print(JTable table) throws Exception {
+		 
+		  
+
+		    table.print();
+		  }
+		
 
 }
