@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.print.PrinterException;
@@ -15,8 +16,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import javax.swing.AbstractAction;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +30,7 @@ import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
@@ -34,7 +39,6 @@ import javax.swing.table.TableColumnModel;
 public class GUI {
 
 	public GUI() {
-
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) screenSize.getHeight();
@@ -47,7 +51,7 @@ public class GUI {
 
 		JLabel fullNamelabel = null;
 
-		JPanel SOUTH_PANEL = new JPanel(new FlowLayout(FlowLayout.CENTER));  
+		JPanel SOUTH_PANEL = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
 		JPanel EAST_PANEL = new JPanel();
 
@@ -60,7 +64,7 @@ public class GUI {
 		top.setSize(200, 200);
 		bottom.setSize(200, 200);
 		JSplitPane vertical = new JSplitPane(JSplitPane.VERTICAL_SPLIT, top, bottom);
-		
+
 		vertical.setDividerSize(10);
 		vertical.setResizeWeight(0.5);
 		// Dimension CENTER_PANELsize = CENTER_PANEL.getSize();
@@ -95,7 +99,7 @@ public class GUI {
 		ProductsObj newproducts3 = new ProductsObj();
 		JLabel enterprize = new JLabel("Entreprise National Des Pièces");
 		JLabel zonename = new JLabel("15 Zone industrielle Rouiba\r\n" + "Algerie");
-		JLabel datenow = new JLabel("Date: "+newfacture.now);
+		JLabel datenow = new JLabel("Date: " + newfacture.now);
 		zonename.setForeground(Color.WHITE);
 		enterprize.setForeground(Color.WHITE);
 		datenow.setForeground(Color.WHITE);
@@ -126,35 +130,58 @@ public class GUI {
 		WEST_PANEL.setPreferredSize(new Dimension(100, height));
 		frame.setSize(width, height);
 
-		String products[] = { "delaa3", "ma3adnouus", "9onbolat cheb bello" };
-		  SpinnerModel newSpinnerModel =  
-		             new SpinnerNumberModel(1, //initial value  
-		                1, //minimum value  
-		                10000000, //maximum value  
-		                1); 
+		String products[] = { "dell", "hp", "samsung" };
+		SpinnerModel newSpinnerModel = new SpinnerNumberModel(1, // initial value
+				1, // minimum value
+				10000000, // maximum value
+				1);
 		JComboBox Products = new JComboBox(products);
 		JSpinner Quantity = new JSpinner(newSpinnerModel);
 
 		JButton addProduct = new JButton("Add Product");
-		SOUTH_PANEL.add(Products,FlowLayout.LEFT);
-		SOUTH_PANEL.add(Quantity,FlowLayout.CENTER);
-		SOUTH_PANEL.add(addProduct,FlowLayout.RIGHT);
+		SOUTH_PANEL.add(Products, FlowLayout.LEFT);
+		SOUTH_PANEL.add(Quantity, FlowLayout.CENTER);
+		SOUTH_PANEL.add(addProduct, FlowLayout.RIGHT);
 		ArrayList<ProductsObj> data = new ArrayList<ProductsObj>();
 		JButton printbtn = new JButton();
 
-		
 		// table
-		String col[] = { "Ref", "Product", "Unit Price", "Quantity", "Product Total Price" };
+		String col[] = { "Ref", "Product", "Unit Price", "Quantity", "Montant" };
 
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 
-		JTable table = new JTable(tableModel);
+		JTable table = new JTable(tableModel){  
+		      public boolean isCellEditable(int row, int column){  
+			        return false;  
+			      }  
+			    };  
+			
 
-		String colfac[] = { "Total", "Montant" };
+		String colfac[] = { "Total" };
 
+		
 		DefaultTableModel tableModelfac = new DefaultTableModel(colfac, 0);
 
-		JTable tablefac = new JTable(tableModelfac);
+		
+	JTable tablefac = new JTable(tableModelfac){  
+	      public boolean isCellEditable(int row, int column){  
+		        return false;  
+		      }  
+		    };  
+	
+	InputMap im = table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+	Object actionKey = new Object();
+
+	im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), actionKey);
+	table.getActionMap().put(actionKey, new AbstractAction() {
+	    @Override
+	    public void actionPerformed(ActionEvent event) {
+	        table.repaint();
+	        table.revalidate();
+	    }
+	});
+	
+	
 		table.getTableHeader().setBackground(Color.decode("#393e46"));
 		tablefac.getTableHeader().setBackground(Color.decode("#393e46"));
 		table.setBackground(Color.decode("#393e46"));
@@ -171,23 +198,25 @@ public class GUI {
 					newproducts1.ref = productChecker;
 					newproducts1.productName = productNameValue;
 					newproducts1.quantity = productQuantityValue;
-					newproducts1.prix = 106;
+					newproducts1.prix = 200000;
 
 				} else if (productChecker == 1) {
 					newproducts2.ref = productChecker;
 
 					newproducts2.productName = productNameValue;
 					newproducts2.quantity = productQuantityValue;
-					newproducts2.prix = 106;
+					newproducts2.prix = 350000;
 
 				} else if (productChecker == 2) {
 					newproducts3.ref = productChecker;
 
 					newproducts3.productName = productNameValue;
 					newproducts3.quantity = productQuantityValue;
-					newproducts3.prix = 106;
+					newproducts3.prix = 750000;
 
 				} else if (productChecker > 2) {
+				     table.repaint();
+				        table.revalidate();
 					System.out.println("fuck off the bill is full");
 				}
 
@@ -259,22 +288,25 @@ public class GUI {
 				// call terminate
 
 				// Our example data
-				String[] headercsv = { "id", "client name", "product 1", "product 2 price", "product 2 quantity",
-						"product 2", "product 2 price", "product 2 quantity", "product 2", "product 2 price",
-						"product 2 quantity", "total", };
+				String[] headercsv = { "id", "client name", "product 1", "product 1 price", "product 1 quantity", "product 1 montant",
+						"product 2", "product 2 price", "product 2 quantity","product 2 montant",
+						"product 3", "product 3 price", "product 3 quantity ", "product 3 montant",
+				 "total", };
 				try {
 					newfacture.id_number = count("output.txt");
 					System.out.print("id  " + FileStorage.getLastId("output"));
 					String[] list = { String.valueOf(newfacture.id_number), newfacture.name, newproducts1.productName,
-							String.valueOf(newproducts1.prix), String.valueOf(newproducts1.quantity),
-							newproducts2.productName, String.valueOf(newproducts2.prix),
-							String.valueOf(newproducts2.quantity), newproducts3.productName,
+							String.valueOf(newproducts1.prix), String.valueOf(newproducts1.quantity),String.valueOf(newproducts1.prix*newproducts1.quantity),
+							newproducts2.productName, String.valueOf(newproducts2.prix), String.valueOf(newproducts2.quantity),String.valueOf(newproducts2.prix*newproducts2.quantity),
+							 newproducts3.productName,
 							String.valueOf(newproducts2.prix), String.valueOf(newproducts2.quantity),
-							String.valueOf(newfacture.total),
+							newproducts3.productName, String.valueOf(newproducts3.prix),
+							String.valueOf(newproducts3.quantity), String.valueOf(newproducts3.prix*newproducts3.quantity),
+		 String.valueOf(newfacture.total),
 
 					};
 					FileStorage.addRecord("output", list);
-
+					FileStorage.addRecordcsv("output", list);
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -309,15 +341,10 @@ public class GUI {
 		return (int) lines;
 
 	}
-	
 
+	public void print(JTable table) throws Exception {
 
-		  public void print(JTable table) throws Exception {
-		 
-		  
-
-		    table.print();
-		  }
-		
+		table.print();
+	}
 
 }

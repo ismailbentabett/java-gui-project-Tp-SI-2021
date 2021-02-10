@@ -30,6 +30,18 @@ public class FileStorage {
         fw.flush();
         fw.close();
     }
+    public static void addRecordcsv(String fileName, String[] fields) throws IOException {
+        FileWriter fw = new FileWriter(fileName + ".csv", true);
+
+        for (String field : fields) {
+            fw.append(field);
+            if (! fields[fields.length - 1 ].equals(field)){
+                fw.append(",");
+            }else fw.append("\n");
+        }
+        fw.flush();
+        fw.close();
+    }
 
     public static ArrayList<String[]> readData(String fileName) throws IOException {
         BufferedReader fr = new BufferedReader(new FileReader(fileName + ".txt"));

@@ -1,3 +1,2 @@
-id,client name,product 1,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,product 2,product 2 price,product 2 quantity,total
-1,rtert ertert,null,0,0,null,0,0,null,0,0,0.0
-2, ,delaa3,106,1,delaa3,106,1,delaa3,106,1,318.0
+id,client name,product 1,product 1 price,product 1 quantity,product 1 montant,product 2,product 2 price,product 2 quantity,product 2 montant,product 3,product 3 price,product 3 quantity ,product 3 montant,total
+6, ,delaa3,106,1,106,delaa3,106,1,106,delaa3,106,1,delaa3,106,1,106,318.0
