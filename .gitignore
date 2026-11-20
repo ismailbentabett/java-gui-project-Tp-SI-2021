@@ -25,3 +25,5 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+config.bat
+node_modules
