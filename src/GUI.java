@@ -83,7 +83,7 @@ public class GUI {
 				"first name:", firstName, "last name :", lastName,
 
 		};
-		int option = JOptionPane.showConfirmDialog(frame, message, "gimme ur name fool", JOptionPane.OK_CANCEL_OPTION);
+		int option = JOptionPane.showConfirmDialog(frame, message, "Please enter your name", JOptionPane.OK_CANCEL_OPTION);
 		if (option == JOptionPane.OK_OPTION) {
 			String firstNameValue = firstName.getText();
 			String lastNameValue = lastName.getText();
@@ -217,7 +217,7 @@ public class GUI {
 				} else if (productChecker > 2) {
 				     table.repaint();
 				        table.revalidate();
-					System.out.println("fuck off the bill is full");
+					System.out.println("The invoice is full: a maximum of 3 products can be added.");
 				}
 
 				newfacture.total = newproducts1.prix * newproducts1.quantity + newproducts2.prix * newproducts2.quantity
