@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title desc">
+  <title id="title">InvoiceDesk</title>
+  <desc id="desc">Desktop invoice builder written in Java Swing</desc>
+  <defs>
+    <clipPath id="frame">
+      <rect width="1280" height="400" rx="24"/>
+    </clipPath>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F89820" stop-opacity="0"/>
+      <stop offset="0.55" stop-color="#F89820" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#5382A1" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F89820"/>
+      <stop offset="1" stop-color="#5382A1"/>
+    </linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#FFFFFF"/>
+    </pattern>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1280" height="400" fill="#0B0F19"/>
+    <rect width="1280" height="400" fill="url(#wash)"/>
+    <rect width="1280" height="400" fill="url(#dots)" opacity="0.06"/>
+
+    <!-- logo mark -->
+    <g transform="translate(96 100) scale(0.78125)">
+      <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#tile)"/>
+      <path d="M78 52 H152 L184 84 V196 a8 8 0 0 1 -8 8 H78 a8 8 0 0 1 -8 -8 V60 a8 8 0 0 1 8 -8 Z" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linejoin="round"/>
+      <path d="M150 54 V86 H182" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linejoin="round"/>
+      <path d="M96 110 H126 M96 136 H158 M96 162 H158" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+      <path d="M132 184 H158" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+    </g>
+
+    <g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+      <text x="340" y="178" font-size="70" font-weight="800" fill="#FFFFFF">InvoiceDesk</text>
+      <text x="342" y="226" font-size="26" fill="#A1A8B8">Desktop invoice builder written in Java Swing</text>
+
+      <g font-size="17" font-weight="600" fill="#E6E9F0">
+        <rect x="342" y="258" width="88" height="36" rx="18" fill="none" stroke="#F89820" stroke-width="1"/>
+        <text x="386" y="282" text-anchor="middle">Java</text>
+        <rect x="442" y="258" width="96" height="36" rx="18" fill="none" stroke="#F89820" stroke-width="1"/>
+        <text x="490" y="282" text-anchor="middle">Swing</text>
+        <rect x="550" y="258" width="132" height="36" rx="18" fill="none" stroke="#5382A1" stroke-width="1"/>
+        <text x="616" y="282" text-anchor="middle">CSV export</text>
+        <rect x="694" y="258" width="104" height="36" rx="18" fill="none" stroke="#5382A1" stroke-width="1"/>
+        <text x="746" y="282" text-anchor="middle">Eclipse</text>
+      </g>
+    </g>
+  </g>
+</svg>
